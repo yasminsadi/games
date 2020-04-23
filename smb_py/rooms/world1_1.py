@@ -7,6 +7,7 @@ import lib_py.shape as sh
 from lib_py.entity import Entity
 from lib_py.components import ShapeGfx
 from lib_py.shape import Polygon
+import smb_py.tiles as ti
 import example
 import yaml
 
@@ -29,9 +30,16 @@ def builder():
     r.main.add (b.poly(0, 0, shape))
     e = Entity()
     e.pos = [0,0,-5]
-    e.addComponent (ShapeGfx(shape = shape, texture = 'gfx/block1.png', x0=2, repx=25, repy=25,slantx = 0.2 ))
+    e.addComponent (ShapeGfx(shape = shape, texture = 'gfx/floor1.png', x0=2, repx=25, repy=25,slantx = 0.4 ))
     r.main.add(e)
     r.main.add (b.makeFoe('andore', 80, 32, 0.5, 5))
+    
+    wall = Entity()
+    wall.pos=[0,100,-0.01*100]
+    wall.addComponent (ShapeGfx(shape = Polygon([0,0,100,0,100,100,0,100]), texture='gfx/wall1.png', repx=32, repy=32))
+    r.main.add(wall)
+    r.main.add(b.makeStaticItem (ti.tree1, 50, 80))
+
     #ba=Entity()
     #ba.addComponent(compo.ShapeGfxColor(shape=sh.Rect(200,100), color=[255,255,255,255]))
     #r.main.add(ba)

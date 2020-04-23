@@ -245,6 +245,13 @@ def poly(x: float, y: float, shape):
     return e
 
 
+def makeStaticItem (tmp, x, y):    
+    tr1 = Entity()
+    tr1.pos = [x, y, -0.01*y]
+    tr1.children.append(poly(0, 0, sh.Rect(tmp[0], tmp[1], offset=tmp[2])))
+    tr1.addComponent(compo.Gfx(image=tmp[3]))
+    return tr1
+
 def spr(model: str, x: float, y: float, z: float = 0.0, tag: str = None):
     a = Sprite(model= model, pos = [x*vars.tileSize, y*vars.tileSize, z], tag = tag)
     return a
